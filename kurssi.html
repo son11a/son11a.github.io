@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html lang="fi">
+
+<head>
+
+  <title>JSON Example</title>  
+
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+   
+    
+    .topnav {
+      overflow: hidden;
+      background-color: #333;
+    }
+    
+    .topnav a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+    
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    
+    .topnav a.active {
+      background-color: #04AA6D;
+      color: white;
+    }
+    </style>
+
+
+  </head>
+
+<body>
+
+    <div class="topnav">
+        <a class="active" href="kurssi.html">Kurssi</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+      </div>
+
+
+
+    <h1>JSON testi sivu</h1>
+
+
+     <div id="vastaus"></div>
+
+
+<script>
+
+fetch('https://son11a.github.io/kurssi.JSON')      
+
+
+ // Muunnetaan vastaus JSON muotoon  
+
+.then(function (response) {
+
+        return response.json();
+
+})
+
+
+//Käsitellään muunnettu (eli JSON muotoinen) vastaus
+
+// Kutsutaan funktiota kerro()ja välitetään sille json-vastaus
+
+
+
+.then(function (responseJson) {
+
+kerro(responseJson);
+
+        })
+
+
+        // Jos tuli jokin virhe
+
+
+        .catch(function (error) {
+
+            document.getElementById("vastaus").innerHTML = "<p>Tietoa ei pystytä hakemaan</p>";
+
+
+    })
+function kerro(data){
+    var teksti = "";
+    teksti = teksti + "otsikko: " + data.otsikko + "<br>"
+    + "kuvaus: " + data.kuvaus + "<br>" + "kuva: " + data.kuva + "<br>"
+    + "Opintojakso:" + "<br>" + "Nimi: "+ data.opintojakso.nimi +"<br> tunnus: "
+    + data.opintojakso.tunnus + "<br> opintopisteet: " + data.opintojakso.opintopisteet;
+   
+
+    document.getElementById("vastaus").innerHTML = teksti;
+}
+
+
+
+
+</script>
+
+
+</body>
+</html>
