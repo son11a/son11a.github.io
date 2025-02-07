@@ -44,8 +44,8 @@
 <body>
 
     <div class="topnav">
-        <a class="active" href="kurssi.html">Kurssi</a>
-        <a href="toteutus.html">Toteutus</a>
+        <a href="kurssi.html">Kurssi</a>
+        <a class="active" href="toteutus.html">Toteutus</a>
         <a href="#contact">Contact</a>
         <a href="#about">About</a>
       </div>
@@ -56,3 +56,60 @@
 
 
      <div id="vastaus"></div>
+
+    <script>
+
+      fetch('https://son11a.github.io/toteutus.JSON')      
+      
+      
+       // Muunnetaan vastaus JSON muotoon  
+      
+      .then(function (response) {
+      
+              return response.json();
+      
+      })
+      
+      
+      //Käsitellään muunnettu (eli JSON muotoinen) vastaus
+      
+      // Kutsutaan funktiota kerro()ja välitetään sille json-vastaus
+      
+      
+      
+      .then(function (responseJson) {
+      
+      kerro(responseJson);
+      
+              })
+      
+      
+              // Jos tuli jokin virhe
+      
+      
+              .catch(function (error) {
+      
+                  document.getElementById("vastaus").innerHTML = "<p>Tietoa ei pystytä hakemaan</p>";
+      
+      
+          })
+      function kerro(data){
+          var teksti = "";
+          teksti = teksti + "Nimi: " + data.nimi + "<br> Osallistujien lukumäärä: " + data.lukumäärä
+          + "<br> Nimet: " + data.nimet[0] + ", " + data.nimet[1] + ", " +data.nimet[2] + ", " + data.nimet[3] + ", "+ data.nimet[4]
+          + "<br> Alkamis- ja loppumispäivämäärät: " + data.päivämäärät 
+          +"<br> Kesto: " + data.kesto;
+      
+          document.getElementById("vastaus").innerHTML = teksti;
+      }
+      
+      
+      
+      
+      </script>
+      
+
+
+
+    </body>
+    </html>
