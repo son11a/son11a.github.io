@@ -47,7 +47,7 @@
         <a class="active" href="index.html">Kurssi</a>
         <a href="toteutus.html">Toteutus</a>
         <a href="tapahtumat.html">Tapahtumat</a>
-        <a href="#about">About</a>
+        <a href="liikennekamera.html">Liikennekamera</a>
       </div>
 
 
@@ -63,7 +63,7 @@
 fetch('https://son11a.github.io/kurssi.JSON')      
 
 
- // Muunnetaan vastaus JSON muotoon  
+ 
 
 .then(function (response) {
 
@@ -71,10 +71,6 @@ fetch('https://son11a.github.io/kurssi.JSON')      
 
 })
 
-
-//Käsitellään muunnettu (eli JSON muotoinen) vastaus
-
-// Kutsutaan funktiota kerro()ja välitetään sille json-vastaus
 
 
 
@@ -85,7 +81,7 @@ kerro(responseJson);
         })
 
 
-        // Jos tuli jokin virhe
+        
 
 
         .catch(function (error) {

@@ -47,7 +47,7 @@
         <a href="index.html">Kurssi</a>
         <a href="toteutus.html">Toteutus</a>
         <a class="active" href="tapahtumat.html">Tapahtumat</a>
-        <a href="#about">About</a>
+        <a href="liikennekamera.html">Liikennekamera</a>
       </div>
 
 <h1>Tapahtumat</h1>
@@ -56,7 +56,7 @@
 
 <script>
 
-fetch('https://api.visittampere.com/api/v1/visittampere/event/published/all/?for mat=json&lang=fi')
+fetch('https://api.visittampere.com/api/v1/visittampere/event/published/all/?format=json&lang=fi')
 
 
 .then(function (response) { return response.json();
@@ -86,7 +86,8 @@ teksti = teksti + "<h3>" + data[i].title + "</h3>";
 
 teksti = teksti + "<p>" + data[i].description + "</p>";
 
-teksti = teksti + "<p> <a href=" + data[i].url + ">" + data[i].url + "</a></p>";
+teksti = teksti + "<p> <a href=" + data[i].url + ">" + data[i].url + "</a></p>"
+ ;
 
 }
 
