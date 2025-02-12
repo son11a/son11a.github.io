@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="fi">
+
+<head>
+
+  <title>JSON Example</title>  
+
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+   
+    
+    .topnav {
+      overflow: hidden;
+      background-color: #333;
+    }
+    
+    .topnav a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+    
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    
+    .topnav a.active {
+      background-color: #04AA6D;
+      color: white;
+    }
+    </style>
+
+
+  </head>
+
+<body>
+
+    <div class="topnav">
+        <a href="index.html">Kurssi</a>
+        <a href="toteutus.html">Toteutus</a>
+        <a class="active" href="tapahtumat.html">Tapahtumat</a>
+        <a href="#about">About</a>
+      </div>
+
+<h1>Tapahtumat</h1>
+
+ <div id="vastaus"></div>
+
+<script>
+
+fetch('https://api.visittampere.com/api/v1/visittampere/event/published/all/?for mat=json&lang=fi')
+
+
+.then(function (response) { return response.json();
+
+})
+
+.then(function (responseJson) {
+
+
+
+    tapahtumat(responseJson)})
+
+.catch(function (error) { document.getElementById("vastaus").innerHTML = "<p>Tietoa ei pystytä hakemaan </p>"+ error;
+
+})
+
+
+function tapahtumat(data) {
+
+var teksti = "";
+
+teksti = "<h1>Tampereella tapahtuu</h1>";
+
+for (var i = 0; i < data.length; i++) {
+
+teksti = teksti + "<h3>" + data[i].title + "</h3>";
+
+teksti = teksti + "<p>" + data[i].description + "</p>";
+
+teksti = teksti + "<p> <a href=" + data[i].url + ">" + data[i].url + "</a></p>";
+
+}
+
+document.getElementById("vastaus").innerHTML = teksti; }
+
+</script>
+
+
+
+
+
+</body>
+</html>
