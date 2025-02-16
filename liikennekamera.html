@@ -59,8 +59,8 @@
 
     
 Promise.all([
-  fetch('https://tie.digitraffic.fi/api/weathercam/v1/stations/C04507').then(response => response.json()),  // First fetch
-  fetch('https://tie.digitraffic.fi/api/weathercam/v1/stations/C04507/data').then(response => response.json())   // Second fetch
+  fetch('https://tie.digitraffic.fi/api/weathercam/v1/stations/C04507').then(response => response.json()),
+  fetch('https://tie.digitraffic.fi/api/weathercam/v1/stations/C04507/data').then(response => response.json())   
 ])
 .then(([data1, data2]) => {
     tapahtumat(data1, data2)
@@ -85,8 +85,7 @@ function tapahtumat (data1, data2){
 </script>
 
 <div> 
-  Liikennetietojen lähde Fintraffic /  
-  <a href="www.digitraffic.fi"> digiraffic.fi </a>lisenssi CC 4.0 BY
+  Liikennetietojen lähde Fintraffic / digiraffic.fi lisenssi CC 4.0 BY
 </div>
 
 
