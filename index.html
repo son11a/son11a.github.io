@@ -92,13 +92,20 @@ kerro(responseJson);
     })
 function kerro(data){
     var teksti = "";
+    var teksti2 = "";
+    var teksti3 = "";
     teksti = teksti + "otsikko: " + data.otsikko + "<br>"
-    + "kuvaus: " + data.kuvaus + "<br>" + "kuva: " + data.kuva + "<br>"
+    + "kuvaus: " + data.kuvaus + "<br>" + "<img src=" + data.kuva + ">" + "<br>"
     + "Opintojakso:" + "<br>" + "Nimi: "+ data.opintojakso.nimi +"<br> tunnus: "
-    + data.opintojakso.tunnus + "<br> opintopisteet: " + data.opintojakso.opintopisteet;
+    + data.opintojakso.tunnus + "<br> opintopisteet: " + data.opintojakso.opintopisteet + "<br>";
 
-
-    document.getElementById("vastaus").innerHTML = teksti;
+    teksti2 = teksti2 + "Sisältö: <br>" + "0: " + data.sisältö[0] + "<br>" + "1: " + data.sisältö[1]
+    + "<br> 2: " + data.sisältö[2] + "<br> 3: " + data.sisältö[3] + "<br>"; 
+teksti3 = teksti3 + "Tekniikat: <br>" + data.tekniikat[0].aihe + ", linkki: " + data.tekniikat[0].linkki +"<br>" 
++ data.tekniikat[1].aihe + ", linkki: " + data.tekniikat[1].linkki +"<br>" +
+data.tekniikat[2].aihe + ", linkki: " + data.tekniikat[2].linkki +"<br>" +
+data.tekniikat[3].aihe + ", linkki: " + data.tekniikat[3].linkki;
+    document.getElementById("vastaus").innerHTML = teksti  + teksti2 + teksti3;
 }
 
 
