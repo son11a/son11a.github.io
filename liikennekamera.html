@@ -57,30 +57,76 @@
 
 <script>
 
-    
-Promise.all([
-  fetch('https://tie.digitraffic.fi/api/weathercam/v1/stations/C04507').then(response => response.json()),
-  fetch('https://tie.digitraffic.fi/api/weathercam/v1/stations/C04507/data').then(response => response.json())   
-])
-.then(([data1, data2]) => {
-    tapahtumat(data1, data2)
+fetch('https://tie.digitraffic.fi/api/weathercam/v1/stations/C04507/data')
+
+.then(function (response) {
+
+return response.json();
+
 })
-.catch(error => console.log('Error:', error));
 
-function tapahtumat (data1, data2){
+.then(function (responseJson) {
 
-    var teksti = "";
-    
-    for (var i = 0; i < data1.properties.presets.length; i++){
+kerro(responseJson);
 
-    teksti = teksti + data2.dataUpdatedTime + "<br>" + "<img src=" + data1.properties.presets[i].imageUrl + ">" + "<br>";
+})
 
-    }
+ .catch(function (error) {
 
-    document.getElementById("vastaus").innerHTML = teksti;
+document.getElementById("vastaus").innerHTML = "<p>Tietoa ei pystytä hakemaan</p>";
 
-    
-}
+
+ })
+
+ const ajat = [];
+
+ function kerro(data1){
+
+  for (var i = 0; i < 5; i++){
+
+    ajat.push(data1.presets[i].measuredTime);
+  }
+  
+ }
+
+
+ fetch('https://tie.digitraffic.fi/api/weathercam/v1/stations/C04507')
+
+.then(function (response) {
+
+return response.json();
+
+})
+
+.then(function (responseJson) {
+
+kuvat(responseJson);
+
+})
+
+ .catch(function (error) {
+
+document.getElementById("vastaus").innerHTML = "<p>Tietoa ei pystytä hakemaan</p>";
+
+
+ })
+
+
+ function kuvat(data2){
+
+  var teksti = "";
+      
+      for (var i = 0; i < data2.properties.presets.length; i++){
+  
+      teksti = teksti + ajat[i] + "<br>" + "<img src=" + data2.properties.presets[i].imageUrl + ">" + "<br>";
+  
+      }
+  
+      document.getElementById("vastaus").innerHTML = teksti;
+
+ }
+
+
 
 </script>
 
